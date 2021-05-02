@@ -20,15 +20,25 @@ jobs:
   build:
     name: build
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
     steps:
+      - name: check_env
+        run: |
+          uname -a;
+          pwd;
+          ls -alt;
+      - name: dockerlogin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: russtanevich
+        run: docker login https://docker.pkg.github.com -u ${GITHUB_USER} --password ${GITHUB_TOKEN}
       - name: pull
         env:
           IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_USER: russtanevich
-        run: |
-          docker login https://docker.pkg.github.com -u ${GITHUB_USER} --password ${GITHUB_TOKEN}
-          docker pull ${IMAGE_BUILDER}
+        run: docker pull ${IMAGE_BUILDER}
       - name: build
         run: make docker-build
       - name: push
