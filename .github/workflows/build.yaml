@@ -26,6 +26,7 @@ jobs:
         env:
           IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: ${{ secrets.GITHUB_USER }}
       - name: build
         run: make docker-build
       - name: push
