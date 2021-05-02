@@ -1,0 +1,33 @@
+
+name: build
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - api
+      - controllers
+      - Dockerfile
+      - main.go
+      - go.mod
+      - go.sum
+      - .dockerignore
+      - Makefile
+
+# permissions: read-all
+
+env:
+  IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1  
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: pull
+        run: docker pull ${IMAGE_BUILDER}  
+      - name: build
+        run: make docker-build
+      - name: push
+        run: make docker-push
