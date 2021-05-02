@@ -16,7 +16,8 @@ on:
       - Makefile
       - .github/**
 
-permissions: read_all
+permissions:
+  packages: read|write
 
 jobs:
   build:
