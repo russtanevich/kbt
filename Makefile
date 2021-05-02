@@ -1,6 +1,6 @@
 
 # Image URL to use all building/pushing image targets
-IMG ?= https://ghcr.io/russtanevich/kbt:0.0.1
+IMG ?= docker.pkg.github.com/russtanevich/kbt/operator:0.0.1
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:trivialVersions=true,preserveUnknownFields=false"
 
