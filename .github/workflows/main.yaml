@@ -1,5 +1,5 @@
 
-name: build
+name: main
 
 on:
   push:
@@ -21,8 +21,8 @@ env:
   IMG: ${PACKAGE}:${GITHUB_SHA}
 
 jobs:
-  build:
-    name: build
+  build-image:
+    name: build-image
     runs-on: ubuntu-20.04
     defaults:
       run:
