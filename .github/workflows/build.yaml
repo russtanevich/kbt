@@ -16,6 +16,10 @@ on:
       - Makefile
       - .github/**
 
+env:
+  PACKAGE: docker.pkg.github.com/russtanevich/kbt/operator
+  IMG: ${PACKAGE}:${GITHUB_SHA}
+
 jobs:
   build:
     name: build
@@ -23,13 +27,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        # working-directory: ../
     steps:
-      - name: check_env
-        run: |
-          uname -a;
-          pwd;
-          env;
       - name: Check out repository
         uses: actions/checkout@v2
         with:
@@ -41,10 +39,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: russtanevich
         run: docker login https://docker.pkg.github.com -u ${GITHUB_USER} --password ${GITHUB_TOKEN}
-      - name: pull
-        env:
-          IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1
-        run: docker pull ${IMAGE_BUILDER}
       - name: build
         run: make docker-build
       - name: push
