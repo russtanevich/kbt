@@ -6,14 +6,15 @@ on:
     branches:
       - develop
     paths:
-      - api
-      - controllers
+      - api/**
+      - controllers/**
       - Dockerfile
       - main.go
       - go.mod
       - go.sum
       - .dockerignore
       - Makefile
+      - .github/**
 
 # permissions: read-all
 
