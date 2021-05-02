@@ -17,7 +17,7 @@ on:
       - .github/**
 
 permissions:
-  packages: read|write
+  packages: read
 
 jobs:
   build:
