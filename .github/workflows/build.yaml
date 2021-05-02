@@ -23,13 +23,14 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: .
+        working-directory: ../
     steps:
       - name: check_env
         run: |
           uname -a;
           pwd;
-          ls -alt;
+          tree -d /home/runner;
+          env;
       - name: dockerlogin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
