@@ -16,9 +16,6 @@ on:
       - Makefile
       - .github/**
 
-permissions:
-  packages: read
-
 jobs:
   build:
     name: build
@@ -28,6 +25,7 @@ jobs:
         run: docker pull ${IMAGE_BUILDER}
         env:
           IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: build
         run: make docker-build
       - name: push
