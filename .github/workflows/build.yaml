@@ -16,17 +16,17 @@ on:
       - Makefile
       - .github/**
 
-env:
-  IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1  
+permissions: read_all|write_all
 
 jobs:
   build:
     name: build
     runs-on: ubuntu-20.04
-    permissions: read_all|write_all
     steps:
       - name: pull
-        run: docker pull ${IMAGE_BUILDER}  
+        run: docker pull ${IMAGE_BUILDER}
+        env:
+          IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1
       - name: build
         run: make docker-build
       - name: push
