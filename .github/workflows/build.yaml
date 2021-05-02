@@ -16,7 +16,11 @@ on:
       - Makefile
       - .github/**
 
-# permissions: read-all
+permissions:
+  actions: read|write
+  checks: read|write
+  packages: read|write
+  statuses: read|write
 
 env:
   IMAGE_BUILDER: docker.pkg.github.com/russtanevich/kbt/operator-builder:0.0.1  
