@@ -24,6 +24,7 @@ rules:
   - jobs/status
   verbs:
   - get
+  - watch
 - apiGroups:
   - batch.tutorial.kubebuilder.io
   resources:
